@@ -7,6 +7,8 @@ document.getElementById('startTest').addEventListener('click', async () => {
     result = true;
   
     resultElement.textContent = '';
+
+    var timestamp = new Date().getTime();
 /*   
     // Measure Ping
     const startPing = performance.now();
@@ -20,7 +22,8 @@ document.getElementById('startTest').addEventListener('click', async () => {
     const pingTimes = [];
     for (let i = 0; i < 10; i++) {
         const startPing = performance.now();
-        await fetch('https://static.flow.com.ar', { mode: 'no-cors' });
+        timestamp = new Date().getTime();
+        await fetch(`https://static.flow.com.ar/?_=${timestamp}`, { mode: 'no-cors' });
         const endPing = performance.now();
         pingTimes.push(endPing - startPing);
     }
@@ -58,13 +61,15 @@ const pingCF = Math.round(endPing - startPing);
 pingElement.textContent = `${pingCF} ms`;
 */
 
+    
+
     // Measure Download Speed
     const downloadStart = performance.now();
-//    const downloadData = await fetch('https://d35bp30xk8khrl.cloudfront.net/app-ott-prod.apk');
+//    const downloadData = await fetch(`https://d35bp30xk8khrl.cloudfront.net/app-ott-prod.apk?_=${timestamp}`);
 //    const fileSize = 34.5;
-    const downloadData = await fetch('https://d35bp30xk8khrl.cloudfront.net/10MB.mp4');
+    const downloadData = await fetch(`https://d35bp30xk8khrl.cloudfront.net/10MB.mp4?_=${timestamp}`);
     const fileSize = 10;
-//    const downloadData = await fetch('https://d35bp30xk8khrl.cloudfront.net/2MB.mp4');
+//    const downloadData = await fetch(`https://d35bp30xk8khrl.cloudfront.net/2MB.mp4?_=${timestamp}`);
 //    const fileSize = 2;
     const downloadBlob = await downloadData.blob();
 
